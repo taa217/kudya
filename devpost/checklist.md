@@ -73,3 +73,10 @@ Activity mode: recap.
 
 - Added stock-aware ordering, USD + ZiG totals, suburb delivery runs and a prep list — Clyde's feedback after the first working slice was that the order bot alone felt generic.
 - Fuzzy matching now needs 6+ letter words, and a bare word while waiting for a name is treated as a name — "Chipo" was being read as "chips".
+
+## Post-review fixes (Oct 19)
+- [x] Quantities survive filler words ("two plates of sadza with chicken" → 2)
+- [x] "x 2" / "x2" / "*2" after a dish
+- [x] Added Sadza & Muriwo and Rice & Beef Stew (common orders that were misread)
+- [x] Bare "sadza" / "rice" gets a which-one question instead of a guess
+- [x] Gemini default model updated to gemini-2.5-flash

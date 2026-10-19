@@ -133,6 +133,10 @@ async function handleMessage(sessionId, text, menu) {
     if (want !== cur) changed = true;
     if (want > 0) s.cart[it.id] = want; else delete s.cart[it.id];
   }
+  for (const base of intent.ambiguous || []) {
+    const opts = menu.items.filter(i => i.id.startsWith(base + "-") && stock[i.id] > 0).map(i => `${i.name} (${usd(i.price)})`);
+    if (opts.length) parts.push(`Which ${base}? We have ${opts.join(", ")}.`);
+  }
   const unknown = (intent.unknown || []).filter(Boolean);
   if (unknown.length) {
     const popular = menu.items.filter(i => stock[i.id] > 0 && i.group === "mains").slice(0, 3).map(i => i.name).join(", ");

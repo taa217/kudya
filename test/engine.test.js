@@ -64,3 +64,22 @@ test("no order exists before the customer says yes", async () => {
   await say("p5", "yes");
   assert.strictEqual(store.listOrders().length, 1);
 });
+
+test("reads everyday phrasings: plates of, x 2, nemuriwo, rice and beef", () => {
+  const q = m => Object.fromEntries(rulesInterpret(m, menu, {}).items.map(i => [i.id, i.qty]));
+  assert.deepStrictEqual(q("Can I get two plates of sadza with chicken?"), { "sadza-chicken": 2 });
+  assert.deepStrictEqual(q("sadza x 2"), {});
+  assert.deepStrictEqual(q("sadza nebeef x 2 and coke x3"), { "sadza-beef": 2, coke: 3 });
+  assert.deepStrictEqual(q("nditumireiwo sadza nemuriwo"), { "sadza-muriwo": 1 });
+  assert.deepStrictEqual(q("I want rice and beef stew"), { "rice-beef": 1 });
+  assert.deepStrictEqual(q("sadza nebeef nemuriwo"), { "sadza-beef": 1, covo: 1 });
+});
+
+test("a bare 'sadza' gets a which-one question, not a guess", async () => {
+  store.resetAll();
+  const r = await say("p6", "sadza x 2 please");
+  assert.match(r.reply, /Which sadza\?/);
+  assert.strictEqual(r.cart.lines.length, 0);
+  const r2 = await say("p7", "2 sadza nehuku");
+  assert.doesNotMatch(r2.reply, /Which sadza/);
+});

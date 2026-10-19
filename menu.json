@@ -14,7 +14,10 @@
         "sadza beef",
         "beef",
         "sadza nenyama",
-        "nyama"
+        "nyama",
+        "sadza with beef",
+        "sadza with beef stew",
+        "sadza and beef stew"
       ],
       "group": "mains",
       "stock": 12
@@ -30,7 +33,9 @@
         "chicken stew",
         "sadza chicken",
         "huku",
-        "chicken"
+        "chicken",
+        "sadza with chicken",
+        "sadza with huku"
       ],
       "group": "mains",
       "stock": 10
@@ -43,10 +48,30 @@
         "sadza nematemba",
         "matemba",
         "kapenta",
-        "sadza and kapenta"
+        "sadza and kapenta",
+        "sadza with matemba",
+        "sadza with kapenta"
       ],
       "group": "mains",
       "stock": 8
+    },
+    {
+      "id": "sadza-muriwo",
+      "name": "Sadza & Muriwo",
+      "price": 2.5,
+      "aliases": [
+        "sadza nemuriwo",
+        "sadza ne muriwo",
+        "sadza and muriwo",
+        "sadza with muriwo",
+        "sadza and greens",
+        "sadza with greens",
+        "sadza and veg",
+        "sadza with veg",
+        "veg plate"
+      ],
+      "group": "mains",
+      "stock": 10
     },
     {
       "id": "rice-chicken",
@@ -56,10 +81,29 @@
         "rice nehuku",
         "rice and chicken",
         "rice chicken",
-        "rice"
+        "rice with chicken",
+        "rice ne huku",
+        "rice and chicken stew"
       ],
       "group": "mains",
       "stock": 6
+    },
+    {
+      "id": "rice-beef",
+      "name": "Rice & Beef Stew",
+      "price": 4.0,
+      "aliases": [
+        "rice nebeef",
+        "rice ne beef",
+        "rice and beef",
+        "rice with beef",
+        "rice beef",
+        "rice and beef stew",
+        "rice with beef stew",
+        "rice nenyama"
+      ],
+      "group": "mains",
+      "stock": 8
     },
     {
       "id": "chips",
@@ -82,7 +126,9 @@
         "muriwo",
         "greens",
         "vegetables",
-        "veg"
+        "veg",
+        "nemuriwo",
+        "ne muriwo"
       ],
       "group": "sides",
       "stock": 15

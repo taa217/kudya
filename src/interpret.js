@@ -65,15 +65,19 @@ function findItems(chunk, menu) {
   taken.sort((x, y) => x.start - y.start);
   // quantity: look just before the match ("2 sadza", "two cokes", "mbiri") or right after ("coke x2")
   return taken.map(c => {
-    const before = text.slice(0, c.start).trim().split(" ").slice(-2);
-    const after = text.slice(c.end).trim().split(" ")[0] || "";
+    // skip filler between the number and the dish: "two plates of sadza", "3 portions of rice"
+    const FILLER = /^(plates?|portions?|servings?|packs?|boxes?|of|x|more|extra)$/;
+    const before = text.slice(0, c.start).trim().split(" ").slice(-5).filter(w => !FILLER.test(w)).slice(-1);
+    const afterToks = text.slice(c.end).replace(/^(es|s)(?=\s)/, "").trim().split(" ");
+    let after = afterToks[0] || "";
+    if ((after === "x" || after === "*") && /^\d+$/.test(afterToks[1] || "")) after = "x" + afterToks[1];
     let qty = 1;
     for (const tok of before.reverse()) {
       if (/^\d+$/.test(tok)) { qty = parseInt(tok, 10); break; }
       if (/^x\d+$/.test(tok)) { qty = parseInt(tok.slice(1), 10); break; }
       if (NUMBER_WORDS[tok] !== undefined) { qty = NUMBER_WORDS[tok]; break; }
     }
-    const xm = after.match(/^x(\d+)$/);
+    const xm = after.match(/^[x*](\d+)$/);
     if (xm) qty = parseInt(xm[1], 10);
     // Shona number after the noun: "sadza nebeef mbiri"
     if (NUMBER_WORDS[after] && !["a", "an"].includes(after)) qty = NUMBER_WORDS[after];
@@ -131,6 +135,15 @@ function rulesInterpret(text, menu, ctx = {}) {
   // split on add/and/plus so each chunk can have its own op
   const found = findItems(raw, menu);
   result.unknown = findUnknown(raw, menu, found);
+  // a bare base ("sadza", "rice") with no relish named: ask which plate rather than guess
+  const ntext = " " + t + " ";
+  result.ambiguous = ["sadza", "rice"].filter(base => {
+    const re = new RegExp(`\\s${base}\\s`, "g");
+    let m, open = false;
+    while ((m = re.exec(ntext))) { const at = m.index; if (!found.some(f => at + 1 >= f.start - 1 && at + 1 < f.end)) open = true; }
+    return open;
+  });
+  if (result.ambiguous.length && !found.length) result.intent = "order";
   if (found.length) {
     const op = removeMode ? "remove" : setMode ? "set" : "add";
     result.items = found.map(f => ({ id: f.id, qty: f.qty, op }));
@@ -163,7 +176,7 @@ function cap(s) {
 async function geminiInterpret(text, menu, ctx = {}) {
   const key = process.env.GEMINI_API_KEY;
   if (!key) throw new Error("no key");
-  const model = process.env.GEMINI_MODEL || "gemini-2.0-flash";
+  const model = process.env.GEMINI_MODEL || "gemini-2.5-flash";
   const menuList = menu.items.map(i => `- id "${i.id}": ${i.name} (also called: ${i.aliases.join(", ")})`).join("\n");
   const system = `You read WhatsApp-style messages sent to a small Zimbabwean food kitchen and extract the customer's intent.
 Customers mix English and Shona (e.g. "nehuku" = with chicken, "mbiri" = two, "ehe" = yes, "kwete" = no).

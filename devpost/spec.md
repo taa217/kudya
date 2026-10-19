@@ -27,7 +27,7 @@ PRD ref: `prd.md > The Core Journey`.
 ## Stack
 - Node.js 18+ (built-in `http`, `fs`, global `fetch`) — https://nodejs.org/docs/latest/api/ ; no npm dependencies.
 - Vanilla HTML/CSS/JS front end.
-- Optional: Gemini API (`gemini-2.0-flash`) — https://ai.google.dev/gemini-api/docs ; chosen because it has a free tier and JSON output mode.
+- Optional: Gemini API (`gemini-2.5-flash`) — https://ai.google.dev/gemini-api/docs ; chosen because it has a free tier and JSON output mode.
 
 ## Where It Runs and How Someone Tries It
 - Local: `npm start` (or `node server.js`) then open http://localhost:3000.
@@ -89,7 +89,7 @@ kudya/
 ```
 
 ## External Services and Dependencies
-- Gemini `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=KEY` with `generationConfig.responseMimeType = "application/json"`. Free tier rate limits apply. Optional.
+- Gemini `POST https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=KEY` with `generationConfig.responseMimeType = "application/json"`. Free tier rate limits apply. Optional.
 
 ## Important Failure Modes
 - **Model unavailable or returns bad JSON** → fall back to the rules interpreter for that message; badge shows "rules".

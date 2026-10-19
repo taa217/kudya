@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kudya — AI order-taker for small kitchens</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="logo">🍲</span> <strong>Kudya</strong> <span class="tag">customers chat, the kitchen gets clean orders</span></div>
+    <div class="kitchen"><span id="kitchenName"></span> · <span class="muted" id="rate"></span></div>
+  </header>
+
+  <main class="layout">
+    <section class="phone" aria-label="Customer chat">
+      <div class="chat-head">
+        <div class="avatar">MR</div>
+        <div>
+          <div class="chat-title" id="chatTitle">Kitchen</div>
+          <div class="chat-sub">AI order assistant · <span id="engineBadge" class="badge">online</span></div>
+        </div>
+      </div>
+      <div class="messages" id="messages"></div>
+      <div class="chips">
+        <button class="chip" data-text="menu">📋 Menu</button>
+        <button class="chip" data-text="start over">↺ Start over</button>
+      </div>
+      <form class="composer" id="composer" autocomplete="off">
+        <input id="input" placeholder="Type your order…" aria-label="Message" />
+        <button type="submit" aria-label="Send">➤</button>
+      </form>
+    </section>
+
+    <section class="board" aria-label="Kitchen board">
+      <div class="board-head">
+        <h2>Kitchen board</h2>
+        <div class="stats"><span id="statCount">0 orders</span> · <strong id="statTotal">$0.00</strong> <span class="muted" id="statZig"></span></div>
+      </div>
+      <div class="columns">
+        <div class="col">
+          <h3><span class="dot new"></span>New <span class="count" id="newCount">0</span></h3>
+          <div id="newList" class="list"></div>
+        </div>
+        <div class="col">
+          <h3><span class="dot ready"></span>Ready for pickup <span class="count" id="readyCount">0</span></h3>
+          <div id="readyList" class="list"></div>
+          <h3 class="mt"><span class="dot runs"></span>Delivery runs <span class="count" id="runCount">0</span></h3>
+          <div id="runList" class="list"></div>
+        </div>
+        <div class="col">
+          <div class="panel">
+            <h3>🔥 Cook now</h3>
+            <div id="prepList"></div>
+          </div>
+          <div class="panel">
+            <h3>📦 Portions left today</h3>
+            <div id="stockList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

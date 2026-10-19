@@ -1,0 +1,193 @@
+{
+  "kitchen": "Mai Rudo's Kitchen",
+  "currency": "USD",
+  "items": [
+    {
+      "id": "sadza-beef",
+      "name": "Sadza & Beef Stew",
+      "price": 4.0,
+      "aliases": [
+        "sadza nebeef",
+        "sadza ne beef",
+        "sadza and beef",
+        "beef stew",
+        "sadza beef",
+        "beef",
+        "sadza nenyama",
+        "nyama"
+      ],
+      "group": "mains",
+      "stock": 12
+    },
+    {
+      "id": "sadza-chicken",
+      "name": "Sadza & Chicken",
+      "price": 4.5,
+      "aliases": [
+        "sadza nehuku",
+        "sadza ne huku",
+        "sadza and chicken",
+        "chicken stew",
+        "sadza chicken",
+        "huku",
+        "chicken"
+      ],
+      "group": "mains",
+      "stock": 10
+    },
+    {
+      "id": "sadza-matemba",
+      "name": "Sadza & Matemba",
+      "price": 3.0,
+      "aliases": [
+        "sadza nematemba",
+        "matemba",
+        "kapenta",
+        "sadza and kapenta"
+      ],
+      "group": "mains",
+      "stock": 8
+    },
+    {
+      "id": "rice-chicken",
+      "name": "Rice & Chicken",
+      "price": 4.5,
+      "aliases": [
+        "rice nehuku",
+        "rice and chicken",
+        "rice chicken",
+        "rice"
+      ],
+      "group": "mains",
+      "stock": 6
+    },
+    {
+      "id": "chips",
+      "name": "Chips (regular)",
+      "price": 1.5,
+      "aliases": [
+        "chips",
+        "fries",
+        "chipisi"
+      ],
+      "group": "sides",
+      "stock": 20
+    },
+    {
+      "id": "covo",
+      "name": "Extra Covo",
+      "price": 0.5,
+      "aliases": [
+        "covo",
+        "muriwo",
+        "greens",
+        "vegetables",
+        "veg"
+      ],
+      "group": "sides",
+      "stock": 15
+    },
+    {
+      "id": "mazoe",
+      "name": "Mazoe Orange 2L",
+      "price": 3.5,
+      "aliases": [
+        "mazoe",
+        "mazoe orange",
+        "orange crush"
+      ],
+      "group": "drinks",
+      "stock": 4
+    },
+    {
+      "id": "coke",
+      "name": "Coke 500ml",
+      "price": 1.0,
+      "aliases": [
+        "coke",
+        "coca cola",
+        "coca-cola",
+        "cola"
+      ],
+      "group": "drinks",
+      "stock": 24
+    },
+    {
+      "id": "maheu",
+      "name": "Maheu 500ml",
+      "price": 1.0,
+      "aliases": [
+        "maheu",
+        "mahewu"
+      ],
+      "group": "drinks",
+      "stock": 12
+    },
+    {
+      "id": "water",
+      "name": "Still Water 500ml",
+      "price": 0.5,
+      "aliases": [
+        "water",
+        "mvura",
+        "bottled water"
+      ],
+      "group": "drinks",
+      "stock": 24
+    }
+  ],
+  "zig": {
+    "rate": 26.6072,
+    "source": "RBZ interbank average, 16 Oct 2026 (edit to today's rate)"
+  },
+  "delivery": {
+    "zones": [
+      {
+        "name": "Zone A",
+        "fee": 1.0,
+        "suburbs": [
+          "CBD",
+          "Town",
+          "Avenues",
+          "Milton Park",
+          "Eastlea",
+          "Belgravia",
+          "Kopje"
+        ]
+      },
+      {
+        "name": "Zone B",
+        "fee": 1.5,
+        "suburbs": [
+          "Avondale",
+          "Belvedere",
+          "Mbare",
+          "Highlands",
+          "Arcadia",
+          "Newlands",
+          "Workington",
+          "Southerton"
+        ]
+      },
+      {
+        "name": "Zone C",
+        "fee": 2.0,
+        "suburbs": [
+          "Borrowdale",
+          "Mabelreign",
+          "Greendale",
+          "Waterfalls",
+          "Hatfield",
+          "Mount Pleasant",
+          "Marlborough",
+          "Msasa",
+          "Mabvuku",
+          "Warren Park",
+          "Glen View",
+          "Budiriro",
+          "Kuwadzana"
+        ]
+      }
+    ]
+  }
+}

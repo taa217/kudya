@@ -1,0 +1,7 @@
+node_modules/
+/devpost/learner-profile.md
+.env
+.env.*
+!.env.example
+data/
+*.log

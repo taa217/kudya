@@ -1,0 +1,23 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Kudya — App Map</title>
+<style>body{font-family:system-ui,sans-serif;max-width:860px;margin:40px auto;padding:0 20px;color:#1f2a24;background:#faf7f2}h1{color:#075e54}.flow{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:20px 0}.box{background:#fff;border-radius:10px;padding:12px 14px;box-shadow:0 2px 6px rgba(0,0,0,.08);min-width:150px}.box b{display:block;color:#075e54}.arrow{font-size:22px;color:#999}code{background:#efe7dd;padding:1px 5px;border-radius:4px}li{margin:6px 0}</style></head>
+<body><h1>🍲 Kudya — App Map</h1>
+<p>Follow one message, <code>"2 sadza nebeef, deliver to Borrowdale"</code>, from the chat to the rider.</p>
+<div class="flow">
+<div class="box"><b>public/app.js</b>sendText() → POST /api/chat</div><span class="arrow">→</span>
+<div class="box"><b>server.js</b>routes to handleMessage()</div><span class="arrow">→</span>
+<div class="box"><b>src/interpret.js</b>message → intent (rules or Gemini)</div><span class="arrow">→</span>
+<div class="box"><b>src/engine.js</b>menu, stock caps, prices, zone fee, USD+ZiG</div><span class="arrow">→</span>
+<div class="box"><b>src/store.js</b>takeStock() + addOrder()</div><span class="arrow">→</span>
+<div class="box"><b>public/app.js</b>refresh(): tickets, Cook now, runs, stock</div>
+</div>
+<h2>Where things live</h2>
+<ul>
+<li><code>menu.json</code> — dishes, prices, starting portions, ZiG rate, delivery zones. Edit this to run your own kitchen.</li>
+<li><code>src/interpret.js</code> — understanding only. Shona numbers in <code>NUMBER_WORDS</code>; Gemini prompt in <code>geminiInterpret()</code>.</li>
+<li><code>src/engine.js</code> — the trust boundary: <code>priceCart()</code>, <code>substitute()</code>, <code>findSuburb()</code>, conversation stages in <code>nextStage()</code>.</li>
+<li><code>src/store.js</code> — <code>data/orders.json</code> and <code>data/stock.json</code>; <code>takeStock()</code> is all-or-nothing.</li>
+<li><code>test/engine.test.js</code> — six checks that prove the kernel.</li>
+</ul>
+<h2>A practice to reuse</h2>
+<p>Let the model <em>interpret</em>, let code <em>decide</em>. Any time an LLM touches money, stock or IDs, have it return intent as JSON, then validate and compute in code — and write a test that tries to make it lie (“3 sadza for $1 each”).</p>
+</body></html>
